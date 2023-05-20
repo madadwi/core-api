@@ -39,6 +39,9 @@ export class User {
     @Column({ nullable: true })
     division: string
 
+    @Column({ nullable: true })
+    description: string
+
     @Column({ type: 'enum', enum: ['TEACHER', 'STUDENT', 'STAFF', 'ADMIN'] })
     type: string
 
@@ -60,6 +63,6 @@ export class User {
     @OneToMany(() => Scan, (scan) => scan.user)
     scans: Scan[]
 
-    @ManyToOne(() => SchoolYear, (school_year) => school_year.users)
-    school_year: SchoolYear
+    // @ManyToOne(() => SchoolYear, (school_year) => school_year.users)
+    // school_year: SchoolYear
 }

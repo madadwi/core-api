@@ -1,5 +1,12 @@
 import { Scan } from 'src/scans/entities/scan.entity'
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+    OneToMany,
+} from 'typeorm'
 
 @Entity()
 export class Machine {
@@ -15,7 +22,7 @@ export class Machine {
     @Column()
     description: string
 
-    @Column({ default: false })
+    @Column()
     is_attendance: boolean
 
     @OneToMany(() => Scan, (scan) => scan.machine)

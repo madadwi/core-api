@@ -11,8 +11,7 @@ import { SchoolYearsService } from 'src/school-years/school-years.service'
 export class TeachersService {
     constructor(
         @InjectRepository(User)
-        private usersRepository: Repository<User>,
-        private readonly schoolYearsService: SchoolYearsService,
+        private usersRepository: Repository<User>, // private readonly schoolYearsService: SchoolYearsService,
     ) {}
 
     async validateUnique(
@@ -39,33 +38,24 @@ export class TeachersService {
         if (errors.length > 0) throw new BadRequestException(errors)
     }
 
-    async create(createTeacherDto: CreateTeacherDto, schoolYearId: string) {
-        const schoolYear = await this.schoolYearsService.findOne(schoolYearId)
+    async create(createTeacherDto: CreateTeacherDto) {
+        // const schoolYear = await this.schoolYearsService.findOne(schoolYearId)
         this.validateUnique(createTeacherDto)
 
         return await this.usersRepository.save({
             ...createTeacherDto,
             password: await bcrypt.hash(createTeacherDto.password, 10),
             type: 'TEACHER',
-            school_year: schoolYear,
+            // school_year: schoolYear,
         })
     }
 
-    async findAll(schoolYearId: string) {
-        const teachers = await this.usersRepository
-            .createQueryBuilder('teachers')
-            .innerJoinAndSelect(
-                'teachers.school_year',
-                'school_years',
-                'school_years.id = :schoolYearId',
-                {
-                    schoolYearId,
-                },
-            )
-            .where({ type: 'TEACHER' })
-            .getMany()
-
-        return teachers
+    async findAll() {
+        return await this.usersRepository.find({
+            where: {
+                type: 'TEACHER',
+            },
+        })
     }
 
     async findOne(id: string) {

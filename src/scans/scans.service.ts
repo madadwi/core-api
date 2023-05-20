@@ -73,9 +73,12 @@ export class ScansService {
         }
     }
 
-    async findAll() {
+    async findAll(type) {
         return await this.scansRepository.find({
-            relations: { user: true, machine: true },
+            relations: { user: { major: true }, machine: true },
+            where: {
+                user: { type },
+            },
         })
     }
 }

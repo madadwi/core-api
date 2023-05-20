@@ -19,6 +19,12 @@ export class SchoolYearsService {
         return await this.schoolyearsRepository.find()
     }
 
+    async active() {
+        return await this.schoolyearsRepository.findOne({
+            where: { status: true },
+        })
+    }
+
     async findOne(id: string) {
         try {
             return await this.schoolyearsRepository.findOneByOrFail({ id })

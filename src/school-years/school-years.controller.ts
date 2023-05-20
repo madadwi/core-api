@@ -23,6 +23,11 @@ export class SchoolYearsController {
     }
 
     @UseGuards(JwtAuthGuard)
+    @Get('active')
+    active() {
+        return this.schoolYearsService.active()
+    }
+
     @Get()
     findAll() {
         return this.schoolYearsService.findAll()

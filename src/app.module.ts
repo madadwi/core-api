@@ -21,6 +21,7 @@ import { Major } from './majors/entities/major.entity'
 import { SchoolYearsModule } from './school-years/school-years.module'
 import { SchoolYear } from './school-years/entities/school-year.entity'
 import { AuthModule } from './auth/auth.module'
+import { AdminsModule } from './admins/admins.module'
 
 @Module({
     imports: [
@@ -36,6 +37,7 @@ import { AuthModule } from './auth/auth.module'
             synchronize: true,
         }),
         MachinesModule,
+        AdminsModule,
         RegionsModule,
         ClassesModule,
         StaffModule,

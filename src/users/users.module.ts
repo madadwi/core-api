@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { SchoolYearsModule } from 'src/school-years/school-years.module'
 
 @Module({
-    imports: [TypeOrmModule.forFeature([User]), SchoolYearsModule],
+    imports: [TypeOrmModule.forFeature([User])],
     controllers: [UsersController],
     providers: [UsersService],
     exports: [UsersService],

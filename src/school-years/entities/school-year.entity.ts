@@ -19,6 +19,15 @@ export class SchoolYear {
     @Column()
     name: string
 
+    @Column()
+    start_date: string
+
+    @Column()
+    end_date: string
+
+    @Column()
+    status: boolean
+
     @OneToMany(() => Class, (Class) => Class.school_year)
     classes: Class[]
 
@@ -28,8 +37,8 @@ export class SchoolYear {
     @OneToMany(() => Region, (Region) => Region.school_year)
     regions: Region[]
 
-    @OneToMany(() => User, (User) => User.school_year)
-    users: User[]
+    // @OneToMany(() => User, (User) => User.school_year)
+    // users: User[]
 
     @CreateDateColumn()
     created_at: Date

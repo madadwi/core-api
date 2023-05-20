@@ -24,7 +24,6 @@ export class MachinesController {
         return this.machinesService.create(createMachineDto)
     }
 
-    @UseGuards(JwtAuthGuard)
     @Get()
     async findAll() {
         return await this.machinesService.findAll()

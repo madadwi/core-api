@@ -15,24 +15,24 @@ import { ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 
 @ApiTags('teachers')
-@Controller('teachers/:schoolYearId')
+@Controller('teachers')
 export class TeachersController {
     constructor(private readonly teachersService: TeachersService) {}
 
     @Post()
-    create(
-        @Body() createTeacherDto: CreateTeacherDto,
-        @Param('schoolYearId') schoolYearId: string,
-    ) {
-        return this.teachersService.create(createTeacherDto, schoolYearId)
+    async create(@Body() createTeacherDto: CreateTeacherDto) {
+        return this.teachersService.create(createTeacherDto)
     }
 
     @Get()
-    findAll(@Param('schoolYearId') schoolYearId: string) {
-        return this.teachersService.findAll(schoolYearId)
+    findAll() {
+        return this.teachersService.findAll()
     }
+    // @Get()
+    // findAll(@Param('schoolYearId') schoolYearId: string) {
+    //     return this.teachersService.findAll(schoolYearId)
+    // }
 
-    @UseGuards(JwtAuthGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.teachersService.findOne(id)

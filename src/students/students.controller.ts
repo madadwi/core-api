@@ -24,7 +24,6 @@ export class StudentsController {
         return this.studentsService.create(createStudentDto)
     }
 
-    @UseGuards(JwtAuthGuard)
     @Get()
     findAll() {
         return this.studentsService.findAll()

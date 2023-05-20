@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common'
+import { Controller, Get, Query, UseGuards } from '@nestjs/common'
 import { ScansService } from './scans.service'
 import { ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
@@ -7,10 +7,8 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 @Controller('scans')
 export class ScansController {
     constructor(private readonly scansService: ScansService) {}
-
-    @UseGuards(JwtAuthGuard)
     @Get()
-    findAll() {
-        return this.scansService.findAll()
+    findAll(@Query('type') type) {
+        return this.scansService.findAll(type)
     }
 }
